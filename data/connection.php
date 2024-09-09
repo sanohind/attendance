@@ -1,6 +1,6 @@
 <?php
 
-$token ='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImQyODcwYTkwLTJhYWItNDNhMC04NjY4LTI3MDMyZjliNWY0YyIsInN1YiI6IjMzMTI1IiwiY29kZW5hbWUiOiJHRFBSTzAwMDkiLCJpYXQiOjE3MjU4NDAwOTMsImV4cCI6MTcyNTkyNjQ5M30.ZK_9muofVjg0cpLsmIfndyWRsKJiMsR62uXL7IxL5mM';
+$token ='';
 
 $config = array(
     'host' => 'localhost',
