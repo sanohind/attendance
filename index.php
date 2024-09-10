@@ -142,6 +142,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 include 'data/employeeClass.php';
                 include 'data/AttendanceClass.php';
                 include 'data/connection.php';
+                include 'data/cekToken.php';
                 include 'test1.php';
                 ?>
                 <div class="card-body">
@@ -246,24 +247,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <script src="plugins/chartjs/dist1/chart.min.js"></script>
 
   <script type="text/javascript">
-    // const api_url = "https://dev.greatdayhr.com/api/";
-    // //'https://dev.greatdayhr.com/api/attendances/byPeriod',
-    // const auth = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImQyODcwYTkwLTJhYWItNDNhMC04NjY4LTI3MDMyZjliNWY0YyIsInN1YiI6IjMzMTI1IiwiaWF0IjoxNzI1MzI4NjM0LCJleHAiOjE3MjU0MTUwMzR9.CnihaWcTtHct5QjdLhmDBGIs7ZdUqHnuxVTPIEwvpdM";
-
-    // function getData() {
-    //   fetch(api_url + "attendances/byPeriod?startDate=2024-09-01&endDate=2024-09-02", {
-    //       mode: 'no-cors',
-    //       method: 'GET',
-    //       headers: {
-    //         'Content-Type': 'application/json',
-    //         'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImQyODcwYTkwLTJhYWItNDNhMC04NjY4LTI3MDMyZjliNWY0YyIsInN1YiI6IjMzMTI1IiwiaWF0IjoxNzI1MzI4NjM0LCJleHAiOjE3MjU0MTUwMzR9.CnihaWcTtHct5QjdLhmDBGIs7ZdUqHnuxVTPIEwvpdM`
-    //       }
-    //     })
-    //     .then(response => console.log(response))
-    //     .catch(error => console.log(error));
-    // }
-
-
     $(document).ready(function() {
       //getData();
       $('#tableLate').DataTable({
@@ -282,7 +265,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       drawChart('OT by Section (Hour)', labelOs, dataOs, 'otSectionChart');
 
       var minutes, seconds, count, counter, timer;
-      count = 400; //seconds
+      count = 120; //seconds
       counter = setInterval(timer, 1000);
 
       function checklength(i) {

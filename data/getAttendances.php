@@ -2,7 +2,8 @@
 //date_default_timezone_set('Etc/GMT');
 include 'AttendanceClass.php';
 include 'connection.php';
-$dateFrom = date('Y-m-d', strtotime("-1 days"));
+include 'cekToken.php';
+$dateFrom = date('Y-m-d', strtotime("-3 days"));
 $dateTo = date('Y-m-d', strtotime("+1 days"));
 
 $ch = curl_init();

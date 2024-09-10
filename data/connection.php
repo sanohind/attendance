@@ -1,7 +1,4 @@
 <?php
-
-$token ='';
-
 $config = array(
     'host' => 'localhost',
     'username' => 'root',

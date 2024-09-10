@@ -1,4 +1,6 @@
 <?php
+include 'employeeClass.php';
+include 'connection.php';
 $url = "https://dev.greatdayhr.com/api/employees";
 $data = [
     "page" => 0,
@@ -15,7 +17,7 @@ $ch = curl_init($url);
 curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
 
 //set the content type to application/json
-curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json', 'Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImQyODcwYTkwLTJhYWItNDNhMC04NjY4LTI3MDMyZjliNWY0YyIsInN1YiI6IjMzMTI1IiwiY29kZW5hbWUiOiJHRFBSTzAwMDkiLCJpYXQiOjE3MjU2NzczNjksImV4cCI6MTcyNTc2Mzc2OX0.D1rB7KX_kU0Ud81F3vCZy5uh-WL54Ba0qQEClI9Zync'));
+curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json', 'Authorization:Bearer '.$token));
 
 //return response instead of outputting
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -37,8 +39,6 @@ $res = json_decode($result);
 //echo "<br/><p>";
 //print_r($res->data[0]->empCompany->empPosition->empDept);
 
-include 'employeeClass.php';
-include 'connection.php';
 $emp = new Employee($db);
 foreach ( $res->data as $row ){
     $save = $emp->storeData(
