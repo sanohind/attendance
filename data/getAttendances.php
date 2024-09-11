@@ -20,16 +20,18 @@ curl_close($ch);
 
 $attn = new Attendance($db);
 $new = 0;
-$update = 0;
+$old = 0;
 echo "total data ". count($data->data) ." row <br/>";
 foreach ($data->data as $row) {
 
     $checkExist = $attn->getAttendanceById($row->attendId);
-    // if($checkExist != NULL){
-    //     echo $row->attendId." sudah ada <br/>";
-    // }else{
-    //     echo $row->attendId." belum ada <br/>";
-    // }
+    
+    if($row->totalOtindex == ''){
+        $otIndex = 0;
+    }else{
+        $otIndex = $row->totalOtindex;
+    }
+
     if ($checkExist != NULL) {
         $update = $attn->updateData(
             $row->starttime,
@@ -37,16 +39,15 @@ foreach ($data->data as $row) {
             $row->actualIn,
             $row->actualOut,
             $row->totalOt,
-            $row->totalOtindex,
+            $otIndex,
             $row->geolocStart,
             $row->geolocEnd,
             $row->attendId
         );
 
-        //if ($update == TRUE) {
-            $update++;
-        //}
-
+        if ($update == TRUE) {
+            $old++;
+        }
     } else {
         $save = $attn->storeData(
             $row->attendId,
@@ -61,7 +62,7 @@ foreach ($data->data as $row) {
             $row->actualOut,
             $row->daytype,
             $row->totalOt,
-            $row->totalOtindex,
+            $otIndex,
             $row->overtimeCode,
             $row->actualworkmnt,
             $row->actualLti,
@@ -73,9 +74,9 @@ foreach ($data->data as $row) {
             $row->spvId
         );
 
-        //if ($save == TRUE){
+        if ($save == TRUE){
             $new++;
-        //}
+        }
     }
 }
-echo "data baru = ".$new." row, <br/> data update = ". $update ." row.";
+echo "data baru = ".$new." row, <br/> data update = ". $old ." row.";
