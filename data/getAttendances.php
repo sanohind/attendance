@@ -38,7 +38,7 @@ foreach ($data->data as $row) {
             $row->attendId
         );
 
-        //if ($update == 1) {
+         //if ($update == 1) {
             $old++;
         //}
     } else {
