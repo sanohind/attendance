@@ -25,14 +25,6 @@ echo "total data ". count($data->data) ." row <br/>";
 foreach ($data->data as $row) {
 
     $checkExist = $attn->getAttendanceById($row->attendId);
-    
-    if($row->totalOtindex == ''){
-        $otIndex = 0;
-        $ot = 0;
-    }else{
-        $otIndex = $row->totalOtindex;
-        $ot = $row->totalOt;
-    }
 
     if ($checkExist != NULL) {
         $update = $attn->updateData(
@@ -40,8 +32,8 @@ foreach ($data->data as $row) {
             date("Y-m-d H:i:s", strtotime('$row->endttime')),
             intval($row->actualIn),
             intval($row->actualOut),
-            $Ot,
-            $otIndex,
+            intval($row->totalOt),
+            intval($row->totalOtindex),
             $row->geolocStart,
             $row->geolocEnd,
             $row->attendId
@@ -63,8 +55,8 @@ foreach ($data->data as $row) {
             intval($row->actualIn),
             intval($row->actualOut),
             $row->daytype,
-            $Ot,
-            $otIndex,
+            intval($row->totalOt),
+            intval($row->totalOtindex),
             $row->overtimeCode,
             $row->actualworkmnt,
             $row->actualLti,
