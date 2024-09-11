@@ -64,7 +64,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <div class="col-sm-6 h3">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item h3"><a href="#"><?= date('d M Y ') ?></a></li>
-                <li class="breadcrumb-item"><span id="timer"></span></li>
+                <!-- <li class="breadcrumb-item"><span id="timer"></span></li> -->
               </ol>
             </div><!-- /.col -->
           </div><!-- /.row -->
@@ -285,8 +285,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
           clearInterval(counter);
           return;
         }
-        document.getElementById("timer").innerHTML =
-          "Refresh in " + minutes + ":" + seconds + " ";
+        // document.getElementById("timer").innerHTML =
+        //   "Refresh in " + minutes + ":" + seconds + " ";
         if (count === 0) {
           location.reload();
         }

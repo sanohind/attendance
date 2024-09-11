@@ -3,14 +3,13 @@ date_default_timezone_set('Etc/GMT');
 include 'AttendanceClass.php';
 include 'connection.php';
 include 'cekToken.php';
-$dateFrom = date('Y-m-d', strtotime("-2 days"));
-$dateTo = date('Y-m-d', strtotime("+1 days"));
+$dateFrom = date('Y-m-d', strtotime("-3 days"));
+$dateTo = date('Y-m-d', strtotime("+2 days"));
 
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, 'https://dev.greatdayhr.com/api/attendances/byPeriod?startDate='.$dateFrom.'&endDate='.$dateTo);
-//curl_setopt($ch, CURLOPT_URL, 'https://dev.greatdayhr.com/api/attendances/byPeriod?startDate=2024-09-06&endDate=2024-09-10');
+curl_setopt($ch, CURLOPT_URL, 'https://dev.greatdayhr.com/api/attendances/byPeriod?startDate=' . $dateFrom . '&endDate=' . $dateTo);
 curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-    'Authorization:Bearer '.$token
+    'Authorization:Bearer ' . $token
 ));
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 $result = curl_exec($ch);
@@ -20,7 +19,7 @@ curl_close($ch);
 $attn = new Attendance($db);
 $new = 0;
 $old = 0;
-echo "total data ". count($data->data) ." row <br/>";
+echo "total data dari tanggal ".$dateFrom. " sampai tangal ".$dateTo. " = ". count($data->data) . " row <br/>";
 foreach ($data->data as $row) {
 
     $checkExist = $attn->getAttendanceById($row->attendId);
@@ -38,8 +37,8 @@ foreach ($data->data as $row) {
             $row->attendId
         );
 
-         //if ($update == 1) {
-            $old++;
+        //if ($update == 1) {
+        $old++;
         //}
     } else {
         $save = $attn->storeData(
@@ -68,8 +67,8 @@ foreach ($data->data as $row) {
         );
 
         //if ($save == 1){
-            $new++;
+        $new++;
         //}
     }
 }
-echo "data baru = ".$new." row, <br/> data update = ". $old ." row.";
+echo "data baru = " . $new . " row, <br/> data update = " . $old . " row.";
