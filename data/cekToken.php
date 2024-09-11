@@ -11,6 +11,7 @@ $refreshToken = $cfg->getConfig('refreshToken');
 
 if ($cekToken->cfgExpire > date('Y-m-d H:i:s')) {
     $token = $cekToken->cfgValue;
+    echo "token lama ".$token;
 } else {
     //echo "token expired";
 
@@ -47,5 +48,6 @@ if ($cekToken->cfgExpire > date('Y-m-d H:i:s')) {
     $updateAccessToken = $cfg->updateConfig($res->refresh_token,date('Y-m-d H:i:s', $res->created_at),date('Y-m-d H:i:s', $res->expired_at), 'refreshToken');
 
     $token = $res->access_token;
+    echo "token baru ".$token;
 
 }
