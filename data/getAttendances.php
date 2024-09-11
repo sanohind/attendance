@@ -39,7 +39,7 @@ foreach ($data->data as $row) {
             $row->attendId
         );
 
-        if ($update == TRUE) {
+        if ($update == 1) {
             $old++;
         }
     } else {
@@ -68,7 +68,7 @@ foreach ($data->data as $row) {
             $row->spvId
         );
 
-        if ($save == TRUE){
+        if ($save == 1){
             $new++;
         }
     }
