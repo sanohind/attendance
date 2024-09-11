@@ -1,5 +1,5 @@
 <?php
-//date_default_timezone_set('Etc/GMT');
+date_default_timezone_set('Etc/GMT');
 include 'AttendanceClass.php';
 include 'connection.php';
 include 'cekToken.php';
@@ -7,8 +7,8 @@ $dateFrom = date('Y-m-d', strtotime("-3 days"));
 $dateTo = date('Y-m-d', strtotime("+1 days"));
 
 $ch = curl_init();
-//curl_setopt($ch, CURLOPT_URL, 'https://dev.greatdayhr.com/api/attendances/byPeriod?startDate='.$dateFrom.'&endDate='.$dateTo);
-curl_setopt($ch, CURLOPT_URL, 'https://dev.greatdayhr.com/api/attendances/byPeriod?startDate=2024-09-06&endDate=2024-09-10');
+curl_setopt($ch, CURLOPT_URL, 'https://dev.greatdayhr.com/api/attendances/byPeriod?startDate='.$dateFrom.'&endDate='.$dateTo);
+//curl_setopt($ch, CURLOPT_URL, 'https://dev.greatdayhr.com/api/attendances/byPeriod?startDate=2024-09-06&endDate=2024-09-10');
 curl_setopt($ch, CURLOPT_HTTPHEADER, array(
     'Authorization:Bearer '.$token
 ));
@@ -36,8 +36,8 @@ foreach ($data->data as $row) {
 
     if ($checkExist != NULL) {
         $update = $attn->updateData(
-            $row->starttime,
-            $row->endtime,
+            date("Y-m-d H:i:s", strtotime('$row->starttime')),
+            date("Y-m-d H:i:s", strtotime('$row->endttime')),
             $row->actualIn,
             $row->actualOut,
             $Ot,
@@ -55,11 +55,11 @@ foreach ($data->data as $row) {
             $row->attendId,
             $row->empId,
             $row->shiftdailyCode,
-            $row->shiftstarttime,
-            $row->shiftendtime,
+            date("Y-m-d H:i:s", strtotime('$row->shiftstarttime')),
+            date("Y-m-d H:i:s", strtotime('$row->shiftendttime')),
             $row->attendCode,
-            $row->starttime,
-            $row->endtime,
+            date("Y-m-d H:i:s", strtotime('$row->starttime')),
+            date("Y-m-d H:i:s", strtotime('$row->endttime')),
             $row->actualIn,
             $row->actualOut,
             $row->daytype,
