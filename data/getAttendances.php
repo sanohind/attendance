@@ -28,8 +28,10 @@ foreach ($data->data as $row) {
     
     if($row->totalOtindex == ''){
         $otIndex = 0;
+        $ot = 0;
     }else{
         $otIndex = $row->totalOtindex;
+        $ot = $row->totalOt;
     }
 
     if ($checkExist != NULL) {
@@ -38,7 +40,7 @@ foreach ($data->data as $row) {
             $row->endtime,
             $row->actualIn,
             $row->actualOut,
-            $row->totalOt,
+            $Ot,
             $otIndex,
             $row->geolocStart,
             $row->geolocEnd,
@@ -61,7 +63,7 @@ foreach ($data->data as $row) {
             $row->actualIn,
             $row->actualOut,
             $row->daytype,
-            $row->totalOt,
+            $Ot,
             $otIndex,
             $row->overtimeCode,
             $row->actualworkmnt,
