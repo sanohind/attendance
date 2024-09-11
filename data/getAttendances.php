@@ -3,7 +3,7 @@ date_default_timezone_set('Etc/GMT');
 include 'AttendanceClass.php';
 include 'connection.php';
 include 'cekToken.php';
-$dateFrom = date('Y-m-d', strtotime("-3 days"));
+$dateFrom = date('Y-m-d', strtotime("-2 days"));
 $dateTo = date('Y-m-d', strtotime("+1 days"));
 
 $ch = curl_init();
@@ -16,7 +16,6 @@ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 $result = curl_exec($ch);
 $data = json_decode($result);
 curl_close($ch);
-
 
 $attn = new Attendance($db);
 $new = 0;
@@ -39,9 +38,9 @@ foreach ($data->data as $row) {
             $row->attendId
         );
 
-        if ($update == 1) {
+        //if ($update == 1) {
             $old++;
-        }
+        //}
     } else {
         $save = $attn->storeData(
             $row->attendId,
@@ -68,9 +67,9 @@ foreach ($data->data as $row) {
             $row->spvId
         );
 
-        if ($save == 1){
+        //if ($save == 1){
             $new++;
-        }
+        //}
     }
 }
 echo "data baru = ".$new." row, <br/> data update = ". $old ." row.";
