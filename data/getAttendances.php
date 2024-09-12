@@ -23,6 +23,8 @@ echo "total data dari tanggal ".$dateFrom. " sampai tangal ".$dateTo. " = ". cou
 foreach ($data->data as $row) {
 
     $checkExist = $attn->getAttendanceById($row->attendId);
+    print_r($checkExist);
+    echo "<br/>";
 
     if ($checkExist != NULL) {
         $update = $attn->updateData(
