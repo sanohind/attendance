@@ -38,13 +38,13 @@ foreach ($data->data as $row) {
             $row->geolocEnd,
             $row->attendId
         );
-
-        if ($update == 1) {
-            echo $row->attendId . " berhasil update ";
-        }else{
-            echo $row->attendId . " gagal update ";
-        }
         $old++;
+        if ($update == 1) {
+            echo "no :". $old ." ". $row->attendId . " berhasil update <br/>";
+        }else{
+            echo "no :". $old ." ". $row->attendId . " gagal update <br/>";
+        }
+        
     } else {
         $save = $attn->storeData(
             $row->attendId,
@@ -71,9 +71,12 @@ foreach ($data->data as $row) {
             $row->spvId
         );
 
-        //if ($save == 1){
         $new++;
-        //}
+        if ($update == 1) {
+            echo "no :". $new ." ". $row->attendId . " berhasil simpan <br/>";
+        }else{
+            echo "no :". $new ." ". $row->attendId . " gagal simpan <br/>";
+        }
     }
 }
 echo "data baru = " . $new . " row, <br/> data update = " . $old . " row.";
