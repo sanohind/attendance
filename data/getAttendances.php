@@ -19,12 +19,12 @@ curl_close($ch);
 $attn = new Attendance($db);
 $new = 0;
 $old = 0;
-echo "total data dari tanggal ".$dateFrom. " sampai tangal ".$dateTo. " = ". count($data->data) . " row <br/>";
+echo "total data dari tanggal " . $dateFrom . " sampai tangal " . $dateTo . " = " . count($data->data) . " row <br/>";
 foreach ($data->data as $row) {
 
     $checkExist = $attn->getAttendanceById($row->attendId);
-    print_r($checkExist);
-    echo "<br/>";
+    //print_r($checkExist);
+    //echo "<br/>";
 
     if ($checkExist != NULL) {
         $update = $attn->updateData(
@@ -39,9 +39,12 @@ foreach ($data->data as $row) {
             $row->attendId
         );
 
-        //if ($update == 1) {
+        if ($update == 1) {
+            echo $row->attendId . " berhasil update ";
+        }else{
+            echo $row->attendId . " gagal update ";
+        }
         $old++;
-        //}
     } else {
         $save = $attn->storeData(
             $row->attendId,
